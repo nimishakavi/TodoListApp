@@ -158,7 +158,9 @@ public class TodoAppUtil {
 			todoObj.setTasks(taskList);
 			
 			todoHashMap.put(userId, todoObj);
-		}		
+		} else {
+			throw new AppException(userId + " has No Tasks to update");
+		}
 	}
 	
 	/**
@@ -209,7 +211,8 @@ public class TodoAppUtil {
 				
 			}
 		} else {
-			tasksBuffer.append(userId + " has No Tasks");
+			//tasksBuffer.append(userId + " has No Tasks");
+			throw new AppException(userId + " has No Tasks to list");	
 		}
 		
 		return tasksBuffer.toString();
@@ -229,11 +232,13 @@ public class TodoAppUtil {
 			taskList.remove(taskSeqNum);			
 			System.out.println("List count = " + taskList.size());
 			todoObj.setTasks(taskList);
-		}		
+		} else {
+			throw new AppException(userId + " has No Tasks to delete");
+		}
 		todoHashMap.put(userId, todoObj);		
 	}
 	
-	public static void updateTask(String user, Task taskObj) {
+	/*public static void updateTask(String user, Task taskObj) {
 		
-	}
+	}*/
 }
